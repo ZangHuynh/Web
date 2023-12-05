@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22716371 Huỳnh Thanh Giang</title>
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <script src="../JS/jquery-3.7.1.min.js"></script>
+    <script src="../JS/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container" style="border: 1px groove;">
+        <div class="row" style="background-image: url(../IMAGES/background.jpg); height: 340px; background-repeat: no-repeat; background-position: center; border-bottom: 1px groove;"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-sm">
+                    <ul class="navbar-nav">
+                        <li class="nav-item m-2"><a href="home.html" class="nav-link">Trang chủ</a></li>
+                        <li class="nav-item m-2"><a href="#" class="nav-link">Giới thiệu</a></li>
+                        <li class="nav-item m-2"><a href="#" class="nav-link">Chuyên khoa</a></li>
+                        <li class="nav-item m-2"><button type="button" class="btn btn-success" onclick="$('#myModal').modal('show')">Đăng ký khám bệnh</button></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-12">
+                <div class="modal fade" id="myModal" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>THÔNG TIN BỆNH NHÂN ĐĂNG KÝ</h3>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="registerForm">
+                                    <div class="row m-2 p-2">
+                                        <label for="maThe">Mã thẻ Bảo hiểm:</label>
+                                        <input type="text" id="maThe" class="form-control">
+                                        <span class="font-italic text-danger" id="errCode">(*)</span>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="">Họ tên: </label>
+                                        <input type="text" id="hoTen" class="form-control">
+                                        <span class="font-italic text-danger" id="errName">(*)</span>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="">Ngày sinh: </label>
+                                        <input type="date" id="date" class="form-control">
+                                        <span class="font-italic text-danger" id="errAge">(*)</span>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" onclick="validSubmit()">Đăng ký</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <h1>DANH SÁCH KHÁM BỆNH TRỰC TUYẾN</h1>
+        </div>
+        <div class="row">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Hình thức</th>
+                        <th>Mã thẻ Bảo hiểm</th>
+                        <th>Họ tên</th>
+                        <th>Tuổi</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Dịch vụ</th>
+                        <th>Tỉ lệ thanh toán</th>
+                    </tr>
+                </thead>
+                <tbody id="tbl">
+                    <tr>
+                        <td>(1)</td>
+                        <td>(2)</td>
+                        <td>(3)</td>
+                        <td>(4)</td>
+                        <td>(5)</td>
+                        <td>(6)</td>
+                        <td>(7)</td>
+                        <td>(8)</td>
+                        <td>(9)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let i = 0;
+
+        function validSubmit(){
+
+            let code = document.getElementById("maThe");
+            let codePattern = /^(QN-|CB-|CD-)[0-9]{4}$/;
+            if(!code.value){
+                document.getElementById("errCode").innerHTML = "Không được rỗng";
+                code.focus();
+                return false;
+            } else if(!codePattern.test(code.value)){
+                    document.getElementById("errCode").innerHTML = "Không đúng định dạng";
+                    code.focus();
+                    return false;
+            } else document.getElementById("errCode").innerHTML = "(*)";
+
+            let name = document.getElementById("hoTen");
+            let namePattern = /^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/;
+            if(!name.value){
+                document.getElementById("errName").innerHTML = "Không được rỗng";
+                name.focus();
+                return false;
+            } else if(!namePattern.test(name.value)){
+                    document.getElementById("errName").innerHTML = "Không đúng định dạng";
+                    name.focus();
+                    return false;
+            } else document.getElementById("errName").innerHTML = "(*)";
+            
+
+            let date = document.getElementById("date");
+            let preDate = new Date();
+            let parseDate = new Date(date.value);
+            let age = preDate.getFullYear() - parseDate.getFullYear();
+            
+            if(preDate.getMonth() < parseDate.getMonth() || (preDate.getMonth() == parseDate.getMonth() && preDate.getDate() < date.getDate)  ){
+                age--;
+            }
+            if(age < 16){
+                document.getElementById("errAge").innerHTML = "Tuổi phải không được nhỏ hơn 16";
+                date.focus();
+                return false;
+            } else document.getElementById("errAge").innerHTML = "(*)";
+
+            let row = "<tr><td>" + (++i) + "</td><td>" + code.value + "</td><td>" + name.value + "</td><td>" + age + "</td></tr>";
+            let mytable = document.getElementById("tbl");
+            let newRow = mytable.insertRow(mytable.rows.length);
+            newRow.innerHTML = row;
+
+            $('#myModal').modal('hide');
+            document.getElementById("registerForm").reset();
+        }
+    </script>
+</body>
+</html>
