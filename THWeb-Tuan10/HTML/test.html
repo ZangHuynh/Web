@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22716371 - Huỳnh Thanh Giang</title>
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <script src="../JS/jquery-3.7.1.min.js"></script>
+    <script src="../JS/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container" style="border: 1px groove;">
+        <div class="row" style="background-image: url(../IMAGES/3.jpg); height: 250px; border: 1px groove;"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-sm">
+                    <ul class="navbar-nav">
+                        <li class="nav-item ml-3"><a href="test.html" class="nav-link">Trang chủ</a></li>
+                        <li class="nav-item ml-3"><a href="#" class="nav-link">Danh sách</a></li>
+                        <li class="nav-item ml-3"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Đăng ký</button></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-12">
+                <div class="modal fade justify-content-center" id="myModal" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Thông tin đăng ký</h3>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="registerForm">
+                                    <div class="row m-2 p-2">
+                                        <label for="tenDN" class="col-md-12">Tên đăng nhập: </label>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" id="tenDN" placeholder="Tên đăng nhập">
+                                            <span class="text-danger font-italic" id="errUser">(*)</span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="hoTen" class="col-md-12">Họ và tên: </label>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" id="hoTen" placeholder="Họ và tên">
+                                            <span class="text-danger font-italic" id="errName">(*)</span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="mail" class="col-md-12">Địa chỉ mail: </label>
+                                        <div class="col-md-12">
+                                            <input type="email" class="form-control" id="mail" placeholder="Địa chỉ mail">
+                                            <span class="text-danger font-italic" id="errMail">(*)</span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="" class="col-md-12">Số điện thoại: </label>
+                                        <div class="col-md-12">
+                                            <input type="tel" class="form-control" id="sdt" placeholder="Số điện thoại">
+                                            <span class="text-danger font-italic" id="errPhone">(*)</span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="pass" class="col-md-12">Mật khẩu: </label>
+                                        <div class="col-md-12">
+                                            <input type="password" class="form-control" id="pass" placeholder="Mật khẩu">
+                                            <span class="text-danger font-italic" id="errPass">(*)</span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="bdate" class="col-md-12">Ngày sinh: </label>
+                                        <div class="col-md-12">
+                                            <input type="date" class="form-control" id="bdate" placeholder="dd/mm/yyyy">
+                                            <span class="text-danger font-italic" id="errDate">(*)</span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="dv" class="col-md-12">Dịch vụ: </label>
+                                        <div class="col-md-12">
+                                            <select id="dv" class="form-control">
+                                                <option value="Dịch vụ 1">Dịch vụ 1</option>
+                                                <option value="Dịch vụ 2">Dịch vụ 2</option>
+                                                <option value="Dịch vụ 3">Dịch vụ 3</option>
+                                                <option value="Dịch vụ 4">Dịch vụ 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="price" class="col-md-12">Giá: </label>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" id="price" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 p-2">
+                                        <label for="quantity" class="col-md-12">Số lượng: </label>
+                                        <div class="col-md-12">
+                                            <input type="number" class="form-control" id="quantity" placeholder="Số lượng">
+                                            <span class="text-danger font-italic" id="errQuant">(*)</span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" onclick="validSubmit()">Đăng ký</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover tavle-striped">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Họ và tên</th>
+                        <th>Mail</th>
+                        <th>Số điện thoại</th>
+                        <th>Mật khẩu</th>
+                        <th>Ngày sinh</th>
+                        <th>Dịch vụ</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="tbl"></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        let i =0;
+        function validSubmit(){
+
+            //Tên đăng nhập
+            let uname = document.getElementById("tenDN");
+            let unamePattern = /^[A-Za-z\d!@#$%^&*\.()]{3,16}$/;
+            let errUser = document.getElementById("errUser");
+            if(!uname.value){
+                errUser.innerHTML = "Tên đăng nhập không được rỗng";
+                uname.focus();
+                return false;
+            } else if(!unamePattern.test(uname.value)){
+                errUser.innerHTML = "Tên đăng nhập không đúng định dạng";
+                uname.focus();
+                return false;
+            } else errUser.innerHTML = "(*)";
+
+            //Họ và tên
+            let name = document.getElementById("hoTen");
+            let errName = document.getElementById("errName");
+            let namePattern = /^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/;
+            if(!name.value){
+                errName.innerHTML = "Họ và tên không được rỗng";
+                name.focus();
+                return false;
+            } else if(!namePattern.test(name.value)){
+                errName.innerHTML = "Họ và tên không đúng định dạng";
+                name.focus();
+                return false;
+            } else errName.innerHTML = "(*)";
+
+            //Mail
+            let mail = document.getElementById("mail");
+            let errMail = document.getElementById("errMail");
+            let mailPattern = /^([A-Za-z0-9\.-_]+)@([a-z]+)\.([a-z\.]{2,4})+$/;
+            if(!mail.value){
+                errMail.innerHTML = "Mail không được để trống";
+                mail.focus();
+                return false;
+            } else if(!mailPattern.test(mail.value)){
+                errMail.innerHTML = "Mail không đúng định dạng";
+                mail.focus();
+                return false;
+            } else errMail.innerHTML = "(*)";
+
+            //Số điện thoại
+            let phone = document.getElementById("sdt");
+            let errPhone = document.getElementById("errPhone");
+            let phonePattern = /^(09|03|08|07)[0-9]{8}$/;
+            if(!phone.value){
+                errPhone.innerHTML = "Số điện thoại không được để trống";
+                phone.focus();
+                return false;
+            } else if(!phonePattern.test(phone.value)){
+                errPhone.innerHTML = "Số điện thoại không đúng định dạng";
+                phone.focus();
+                return false;
+            } else errPhone.innerHTML = "(*)";
+
+            //Mật khẩu
+            let pass = document.getElementById("pass");
+            let errPass = document.getElementById("errPass");
+            let passPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_-])[A-Za-z\d!@#$%^&*()_-]{8,}$/;
+            if(!pass.value){
+                errPass.innerHTML = "Mật khẩu không được để rỗng";
+                pass.focus();
+                return false;
+            } else if(!passPattern.test(pass.value)){
+                errPass.innerHTML = "Mật khẩu không đúng định dạng";
+                pass.focus();
+                return false;
+            } else errPass.innerHTML = "(*)";
+
+            //Ngày sinh
+            let date = document.getElementById("bdate");
+            let errDate = document.getElementById("errDate");
+            let today = new Date();
+            let parseDate = new Date(date.value);
+            let age = today.getFullYear() - parseDate.getFullYear();
+            if((parseDate.getMonth < today.getMonth) || (parseDate.getMonth == today.getMonth && parseDate.getDate < today.getDate)){
+                age--;
+            }
+            if(!date.value){
+                errDate.innerHTML = "Ngày sinh không được để trống";
+                date.focus();
+                return false;
+            } else if(parseDate > today){
+                errDate.innerHTML = "Ngày sinh phải trước ngày hiện tại";
+                date.focus();
+                return false;
+            } else if(age < 18){
+                errDate.innerHTML = "Tuổi không được dưới 18 tuổi";
+                date.focus();
+                return false;
+            } else errDate.innerHTML = "(*)";
+
+            //Số lượng
+            let quantity = document.getElementById("quantity");
+            let errQuant = document.getElementById("errQuant");
+            if(!quantity.value){
+                errQuant.innerHTML = "Số lượng không được để rỗng";
+                quantity.focus();
+                return false;
+            } else if(quantity.value < 0){
+                errQuant.innerHTML = "Số lượng phải lớn hơn 0";
+                quantity.focus();
+                return false;
+            } else errQuant.innerHTML = "(*)";
+
+            let dichVu = document.getElementById("dv");
+
+            let gia = document.getElementById("price");
+
+            let totalPrice = gia.value * quantity.value;
+
+            let row = "<tr><td>" + (++i) + "</td><td>" + uname.value + "</td><td>" + name.value + "</td><td>" + mail.value + "</td><td>" + phone.value + "</td><td>" + pass.value + "</td><td>" + date.value + "</td><td>" + dichVu.value + "</td><td>" + gia.value + "</td><td>" + quantity.value + "</td><td>" + totalPrice +"</td></tr>";
+            let mytable = document.getElementById("tbl");
+            let newRow = mytable.insertRow(mytable.rows.length);
+            newRow.innerHTML = row;
+            
+            $('#myModal').modal('hide');
+            document.getElementById("registerForm").reset();
+        }
+
+        document.getElementById("dv").onchange = function(){
+            let dichVu = document.getElementById("dv").value;
+            let gia = document.getElementById("price");
+
+            switch(dichVu){
+                case "Dịch vụ 1":{
+                    gia.value = 100000;
+                    break;
+                }
+                case "Dịch vụ 2":{
+                    gia.value = 200000;
+                    break;
+                }
+                case "Dịch vụ 3":{
+                    gia.value = 300000;
+                    break;
+                }
+                case "Dịch vụ 4":{
+                    gia.value = 400000;
+                    break;
+                }
+                default: {
+                    gia.value = 0;
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
